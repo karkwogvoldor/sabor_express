@@ -1,6 +1,6 @@
 import os
 
-restaurante = []
+restaurantes = ['Sabor Caseiro', 'Jorje Sushi', 'Pizzaria do Zé']
 
 def exibir_nome_do_programa():
       print("""
@@ -19,18 +19,34 @@ def exibir_opcoes():
       print('4. Sair\n')
 
 def finalizar_app():
+    exibir_subtitulo('Finalizando o App...')
+
+def voltar_ao_menu_principal():
+    input('\nDigite uma tecla para voltar ao menu principal...')
+    main()
+
+def opcao_invalida():
+    print('Opção inválida!\n')
+    voltar_ao_menu_principal()
+    
+def exibir_subtitulo(texto):
     os.system('cls')
-    print('Obrigado por usar o Sabor Express! Até a próxima!')
+    print(texto)
+    print()
 
 def escolher_novo_restaurante():
-      os.system('cls')
-      print('Cadastro de novos restaurantes\n')
+      exibir_subtitulo('Cadastro de novo restaurante')
       nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-      restaurante.append(nome_do_restaurante)
+      restaurantes.append(nome_do_restaurante)
       print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!\n')
-      input('Digite uma tecla para voltar ao menu principal...')
-      main()
-      
+      voltar_ao_menu_principal()
+
+def listar_restaurantes():
+      exibir_subtitulo('Lista de restaurantes cadastrados')
+      for restaurante in restaurantes:
+            print(f'- {restaurante}')
+      voltar_ao_menu_principal()
+
 def escolher_opcao():
     try:
       opcao_escolhida = int(input('Escolha uma opção: '))
@@ -38,7 +54,7 @@ def escolher_opcao():
       if opcao_escolhida == 1:
             escolher_novo_restaurante()
       elif opcao_escolhida == 2:
-            print('Listar restaurante')
+            listar_restaurantes()
       elif opcao_escolhida == 3:
             print('Ativar restaurante')
       elif opcao_escolhida == 4:  # <-- Agora o 4 tem o seu lugar exclusivo!
@@ -47,12 +63,6 @@ def escolher_opcao():
             opcao_invalida()
     except:
       opcao_invalida()
-
-def opcao_invalida():
-    print('Opção inválida!\n')
-    input('Digite uma tecla para voltar ao menu principal...')
-    main()
-
 
 def main():
     os.system('cls')
