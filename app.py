@@ -1,7 +1,7 @@
 import os
 
 restaurantes = [{'nome':'Praça', 'categoria':'Japonesa', 'ativo':False}, 
-                {'nome':'Pizza Superma', 'categoria':'Pizza', 'ativo':True},
+                {'nome':'Pizza Suprema', 'categoria':'Pizza', 'ativo':True},
                 {'nome':'Cantina', 'categoria':'Italiano', 'ativo':False}]
 
 def exibir_nome_do_programa():
@@ -54,6 +54,22 @@ def listar_restaurantes():
             print(f'- {nome_restaurante} | {categoria} | {ativo}')
       voltar_ao_menu_principal()
 
+def alternar_estado_restaurante():
+      exibir_subtitulo('Alternando o estado do restaurante')
+      nome_restaurante = input('Digite o nome do restaurante que deseja ativar/desativar: ')
+      restaurante_encontrado = False
+      for restaurante in restaurantes:
+            if restaurante['nome'] == nome_restaurante:
+                  restaurante_encontrado = True
+                  restaurante['ativo'] = not restaurante['ativo']
+                  mensagem = f'O restaurante {nome_restaurante} foi ativado com sucesso!' if restaurante['ativo'] else f'O restaurante {nome_restaurante} foi desativado com sucesso!'
+                  print(mensagem)
+      if not restaurante_encontrado:
+            print(f'Não foi encontrado um restaurante com o nome {nome_restaurante}.\n')
+      
+      voltar_ao_menu_principal()
+
+
 def escolher_opcao():
     try:
       opcao_escolhida = int(input('Escolha uma opção: '))
@@ -63,7 +79,7 @@ def escolher_opcao():
       elif opcao_escolhida == 2:
             listar_restaurantes()
       elif opcao_escolhida == 3:
-            print('Ativar restaurante')
+            alternar_estado_restaurante()
       elif opcao_escolhida == 4:  # <-- Agora o 4 tem o seu lugar exclusivo!
             finalizar_app()
       else:                       # <-- O else agora só pega números errados
