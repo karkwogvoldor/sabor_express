@@ -92,20 +92,20 @@ def alternar_estado_restaurante():
 def escolher_opcao():
       '''Função para escolher uma opção do menu. Solicita ao usuário que escolha uma opção e executa a função correspondente com base na escolha. Se a opção escolhida for inválida, chama a função opcao_invalida() para lidar com o erro.'''
       try:
-      opcao_escolhida = int(input('Escolha uma opção: '))
+            opcao_escolhida = int(input('Escolha uma opção: '))
 
-      if opcao_escolhida == 1:
-            escolher_novo_restaurante()
-      elif opcao_escolhida == 2:
-            listar_restaurantes()
-      elif opcao_escolhida == 3:
-            alternar_estado_restaurante()
-      elif opcao_escolhida == 4:  # <-- Agora o 4 tem o seu lugar exclusivo!
-            finalizar_app()
-      else:                       # <-- O else agora só pega números errados
-            opcao_invalida()
+            if opcao_escolhida == 1:
+                  escolher_novo_restaurante()
+            elif opcao_escolhida == 2:
+                  listar_restaurantes()
+            elif opcao_escolhida == 3:
+                  alternar_estado_restaurante()
+            elif opcao_escolhida == 4:
+                  finalizar_app()
+            else:
+                  opcao_invalida()
       except:
-      opcao_invalida()
+            opcao_invalida()
 
 def main():
       '''Função principal do programa. Limpa a tela, exibe o nome do programa, as opções do menu e chama a função escolher_opcao() para iniciar a interação com o usuário.'''
